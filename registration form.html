@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            background: url('image1.jpg'); /* You can replace 'background-image.jpg' with your own image */
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+	    width: 50%;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* White background with opacity */
+            background: transparent;
+            backdrop-filter: blur(2px);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+	 h2 {
+            text-align: center;
+            text-decoration-line: underline;
+            font-family: cursive, lucida handwriting;
+            text-decoration-thickness: 2px;
+            color: #18691b; /* Heading color */
+            font-size: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: aliceblue;
+            font-size: 20px;
+        }
+        input[type="text"], select {
+            width: 80%;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .category-item {
+            margin-left: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4b9ed4;
+        }
+       
+        #added-items {
+            margin-top: 20px;
+            color: aliceblue;
+        }
+        #added-items-list {
+            list-style-type: none;
+        }
+        #added-items-list li {
+            margin: 5px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2><center>REGISTRATION FORM</center></h2>
+<form id="registrationForm">
+    <!-- Form fields here (same as previous) -->
+    <!-- Name -->
+    <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+
+    <!-- Department -->
+    <div class="form-group">
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required>
+    </div>
+
+    <!-- Year -->
+    <div class="form-group">
+        <label for="year">Year:</label>
+        <input type="text" id="year" name="year" required>
+    </div>
+
+    <!-- Team Name -->
+    <div class="form-group">
+        <label for="team">Team Name:</label>
+        <select id="team" name="team">
+            <option value="">Select Team</option>
+            <option value="ITHIHAS">ITHIHAS</option>
+            <option value="AAWAZ">AAWAZ</option>
+            <option value="ELDHERS">ELDHERS</option>
+            <option value="VOLVERS">VOLVERS</option>
+        </select>
+    </div>
+
+    <!-- Categories -->
+    <div class="form-group">
+        <label for="categories">Categories:</label>
+        <select id="categories" name="categories" multiple onchange="updateItems()">
+            <option value="LITERATURE">LITERATURE</option>
+            <option value="FINEART">FINE ART</option>
+            <option value="MUSIC">MUSIC</option>
+            <option value="INSTRUMENTAL">INSTRUMENTAL MUSIC</option>
+            <option value="DANCE">DANCE</option>
+            <option value="STAGE">STAGE PROGRAMS</option>
+        </select>
+    </div>
+
+    <!-- Items (subcategories based on category selection) -->
+    <div id="items" class="form-group">
+        <label>Select items :</label>
+        <!-- Items will be populated based on selected categories -->
+    </div>
+
+    <!-- Add Button to Add Selected Items -->
+    <button type="button" id="addButton" onclick="addItems()">Add Items</button>
+
+    <!-- Display Added Items -->
+    <div id="added-items">
+        <h4>Added Items:</h4>
+        <ul id="added-items-list"></ul>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    // List of items for each category
+    const categoryItems = {
+        "LITERATURE": ['poetical composition', 'short story', 'poem','speech','quiz','debate','akshara slokam','kavya keli'],
+        "FINEART": ['water colouring', 'oil painting', 'cartoon','pencil drawing','clay modelling','collage','embroidery','poster','rangolli','photography','pookalam'],
+        "MUSIC": ['lalidha ghanam', 'classical song','mappilla paattu','nomad song','semi classical','kadhakali music','ghanamela','poem'],
+        "INSTRUMENTAL": ['insturments', 'chenda melam', 'band melam','chenda','madhalam'],
+        "DANCE": ['kadhakali', 'baradhanatyam','mohiniaattam','classical dance','naadodi nirtham','thullal','koodiyattam','chakyarkoothu'],
+        "STAGE": ['myme','kadhapresangam','mono act','mimicry']
+    };
+
+    let selectedItems = {};  // Object to store selected items by category
+
+    // Function to update items based on selected categories
+    function updateItems() {
+        const selectedCategories = Array.from(document.getElementById('categories').selectedOptions)
+            .map(option => option.value);
+        const itemsDiv = document.getElementById('items');
+        itemsDiv.innerHTML = '<label>Select items:</label>'; // Clear previous items
+
+        selectedCategories.forEach(category => {
+            const itemsList = categoryItems[category] || [];
+            itemsList.forEach(item => {
+                const checkboxLabel = document.createElement('label');
+                checkboxLabel.innerHTML = `<input type="checkbox" name="items" value="${item}" data-category="${category}"> ${item}`;
+                itemsDiv.appendChild(checkboxLabel);
+                itemsDiv.appendChild(document.createElement('br'));
+            });
+        });
+    }
+
+    // Function to add selected items to the added-items list
+    // Function to add selected items to the added-items list
+function addItems() {
+    const selectedCheckboxes = document.querySelectorAll('input[name="items"]:checked');
+    const itemsList = document.getElementById('added-items-list');
+    const totalSelectedItems = Object.values(selectedItems).reduce((count, items) => count + items.length, 0);
+
+    if (totalSelectedItems + selectedCheckboxes.length > 5) {
+        alert("You can only add a maximum of 5 items.");
+        return;
+    }
+
+    selectedCheckboxes.forEach(checkbox => {
+        const itemValue = checkbox.value;
+        const category = checkbox.getAttribute('data-category');
+
+        if (!selectedItems[category]) {
+            selectedItems[category] = [];
+        }
+
+        if (!selectedItems[category].includes(itemValue)) {
+            selectedItems[category].push(itemValue);
+
+            const listItem = document.createElement('li');
+            listItem.textContent = `${category} - ${itemValue}`;
+            itemsList.appendChild(listItem);
+        }
+    });
+
+    // Uncheck all selected checkboxes after adding items
+    document.querySelectorAll('input[name="items"]').forEach(input => input.checked = false);
+}
+    
+
+    // Form submit handling
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Collect form data
+        const name = document.getElementById('name').value;
+        const department = document.getElementById('department').value;
+        const year = document.getElementById('year').value;
+        const team = document.getElementById('team').value;
+
+        // Store the data in sessionStorage
+        const formData = {
+            name,
+            department,
+            year,
+            team,
+            selectedItems
+        };
+
+        console.log("Data being stored:", formData); // Log the data being stored
+        sessionStorage.setItem('registrationData', JSON.stringify(formData));
+
+        // Log if data is stored successfully
+        console.log("Data stored in sessionStorage:", sessionStorage.getItem('registrationData'));
+
+        // Redirect to the new page (output.html)
+        window.location.href = 'output1.html'; // This will redirect after storing the data
+    });
+</script>
+
+</body>
+</html>

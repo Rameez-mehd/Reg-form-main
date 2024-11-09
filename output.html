@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Output</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            font-family: cursive, lucida handwriting;
+            color: #18691b;
+            font-size: 30px;
+        }
+        #output {
+            width: 75%; /* Aspect ratio 4:3 when height is set */
+            aspect-ratio: 4 / 3; /* Ensures a 4:3 ratio */
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: black;
+            color: aliceblue;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left
+        }
+        #output h3 {
+            text-align: left;
+            color: aliceblue;
+            margin-top: 0;
+        }
+        .output-item {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<h2><center>Registration Details</center></h2>
+
+<div id="output">
+    <h3>Entered Registration Details :</h3>
+    <div id="output-name" class="output-item"></div>
+    <div id="output-department" class="output-item"></div>
+    <div id="output-year" class="output-item"></div>
+    <div id="output-team" class="output-item"></div>
+    <div id="output-items" class="output-item"></div>
+</div>
+
+<script>
+    // Retrieve data from sessionStorage
+    const data = JSON.parse(sessionStorage.getItem('registrationData'));
+
+    if (data) {
+        // Display entered details
+        document.getElementById('output-name').textContent = `Full Name: ${data.name}`;
+        document.getElementById('output-department').textContent = `Department: ${data.department}`;
+        document.getElementById('output-year').textContent = `Year: ${data.year}`;
+        document.getElementById('output-team').textContent = `Team: ${data.team}`;
+
+        // Display selected items
+        let itemsOutput = "Items: ";
+        if (data.selectedItems) {
+            itemsOutput += "<ul>";
+            for (const category in data.selectedItems) {
+                data.selectedItems[category].forEach(item => {
+                    itemsOutput += `<li>${category} - ${item}</li>`;
+                });
+            }
+            itemsOutput += "</ul>";
+        } else {
+            itemsOutput = "No items selected.";
+        }
+        document.getElementById('output-items').innerHTML = itemsOutput;
+
+        // Change background based on team
+        const outputDiv = document.getElementById('output');
+        switch(data.team) {
+            case 'ITHIHAS':
+                outputDiv.style.backgroundImage = "url('green.jpg')";
+                break;
+            case 'AAWAZ':
+                outputDiv.style.backgroundImage = "url('green.png')";
+                break;
+            case 'ELDHERS':
+                outputDiv.style.backgroundImage = "url('image1.jpg')";
+                break;
+            case 'VOLVERS':
+                outputDiv.style.backgroundImage = "url('blue.png')";
+                break;
+            default:
+                outputDiv.style.backgroundImage = "url('gw.jpg')";
+                break;
+        }
+    } else {
+        document.getElementById('output').innerHTML = '<p>No registration data found.</p>';
+    }
+</script>
+
+</body>
+</html>
