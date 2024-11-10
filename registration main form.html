@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background:  url('image1.jpg');
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Main container for the form */
+        .container {
+            position: relative;
+            width: 50%;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            background: transparent;
+            backdrop-filter: blur(2px);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Heading styles */
+        h2 {
+            text-align: center;
+            text-decoration-line: underline;
+            font-family: cursive, lucida handwriting;
+            text-decoration-thickness: 2px;
+            color: #18691b;
+            font-size: 30px;
+        }
+
+        /* Label for the form fields */
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: aliceblue;
+        }
+
+        /* Input fields and select boxes */
+        input[type="text"], select, input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            background-color: #b1d8bd;
+        }
+
+        /* Focused states for input and select */
+        input[type="text"]:focus, select:focus {
+            border-color: #4CAF50;
+            background-color: #b1d8bd;
+            outline: none;
+        }
+
+        /* Submit button styling */
+        button {
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        /* Smaller Add button */
+        #addButton {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+            width: 50%;
+            font-size: 14px;
+        }
+
+        #addButton:hover {
+            background-color: #45a049;
+        }
+        #added-items {
+            margin-top: 20px;
+            color: aliceblue;
+        }
+        #added-items-list {
+            list-style-type: none;
+        }
+        #added-items-list li {
+            margin: 5px 0;
+        }
+
+        /* Form group for spacing between fields */
+        .form-group {
+            margin-bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Profile picture upload button styling */
+        .profile-pic-upload {
+            display: inline-block;
+            margin: 20px 0;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Hidden file input */
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+
+        <!-- Profile Picture Upload Button -->
+        <label for="profilePic" class="profile-pic-upload" title="Upload Profile Picture">
+            📷
+        </label>
+
+        <form id="registrationForm">
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <!-- Department -->
+            <div class="form-group">
+                <label for="department">Department</label>
+                <select id="department" name="department" required>
+                    <option value="">Select Department</option>
+                    <option value="Botany">Botany</option>
+                    <option value="Business Administration">Business Administration</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Commerce">Commerce</option>
+                    <option value="Computer Application">Computer Application</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Dairy Science and Analytics">Dairy Science and Analytics</option>
+                    <option value="Data Science and Analytics">Data Science and Analytics</option>
+                    <option value="Economics">Economics</option>
+                    <option value="English">English</option>
+                    <option value="Food Technology">Food Technology</option>
+                    <option value="Forensic Science">Forensic Science</option>
+                    <option value="History">History</option>
+                    <option value="Islamic History">Islamic History</option>
+                    <option value="Mass Communication & Journalism">Mass Communication & Journalism</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Psychology">Psychology</option>
+                    <option value="Tourism and Hospitality Management">Tourism and Hospitality Management</option>
+                    
+                </select>
+            </div>
+
+            <!-- Year -->
+            <div class="form-group">
+                <label for="year">Year</label>
+                <select id="year" name="year" required>
+                    <option value="">Select Year</option>
+                    <option value="First Year (UG)">First Year (UG)</option>
+                    <option value="Second Year (UG)">Second Year (UG)</option>
+                    <option value="Third Year (UG)">Third Year (UG)</option>
+                    <option value="Fourth Year (UG)">Fourth Year (UG)</option>
+                    <option value="Fifth Year (UG)">Fifth Year (UG)</option>
+                    <option value="First Year (PG)">First Year (PG)</option>
+                    <option value="Second Year (PG)">Second Year (PG)</option>
+                    
+                </select>
+            </div>
+
+            <!-- Phone number -->
+            <div class="form-group">
+                <label for="phone">Phone no:</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+
+            <!-- Team Name -->
+            <div class="form-group">
+                <label for="team">Team Name</label>
+                <select id="team" name="team" required>
+                    <option value="">Select Team Name</option>
+                    <option value="ITHIHAS" style="background-color: red; color: white;">ITHIHAS</option>
+                    <option value="AAWAZ" style="background-color: green; color: white;">AAWAZ</option>
+                    <option value="ELDHERS" style="background-color: yellow; color: black;">ELDHERS</option>
+                    <option value="VOLVERS" style="background-color: blue; color: white;">VOLVERS</option>
+                   
+                </select>
+            </div>
+
+            <!-- Categories -->
+            <div class="form-group">
+                <label for="categories">Categories:</label>
+                <select id="categories" name="categories" multiple onchange="updateItems()">
+                    <option value="LITERATURE">LITERATURE</option>
+                    <option value="FINEART">FINE ART</option>
+                    <option value="MUSIC">MUSIC</option>
+                    <option value="INSTRUMENTAL">INSTRUMENTAL MUSIC</option>
+                    <option value="DANCE">DANCE</option>
+                    <option value="STAGE">STAGE PROGRAMS</option>
+                    
+                </select>
+            </div>
+
+            <!-- Items -->
+            <div id="items" class="form-group">
+                <label>Select items :</label>
+            </div>
+
+            <!-- Add Button -->
+            <button type="button" id="addButton" onclick="addItems()">Add Items</button>
+
+            <!-- Display Added Items -->
+            <div id="added-items" class="form-group">
+                <h4>Added Items:</h4>
+                <ul id="added-items-list"></ul>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" onclick="submitForm()">Submit</button>
+        </form>
+
+        <!-- Hidden input field for file upload -->
+        <input type="file" id="profilePic" accept="image/*" onchange="previewImage(event)" />
+    </div>
+
+    <script>
+        const categoryItems = {
+            "LITERATURE": ['poetical composition', 'short story', 'poem','speech','quiz','debate','akshara slokam','kavya keli'],
+            "FINEART": ['water colouring', 'oil painting', 'cartoon','pencil drawing','clay modelling','collage','embroidery','poster','rangolli','photography','pookalam'],
+            "MUSIC": ['lalidha ghanam', 'classical song','mappilla paattu','nomad song','semi classical','kadhakali music','ghanamela','poem'],
+            "INSTRUMENTAL": ['insturments', 'chenda melam', 'band melam','chenda','madhalam'],
+            "DANCE": ['kadhakali', 'baradhanatyam','mohiniaattam','classical dance','naadodi nirtham','thullal','koodiyattam','chakyarkoothu'],
+            "STAGE": ['myme','kadhapresangam','mono act','mimicry']
+
+            
+        };
+
+        function updateItems() {
+            const selectedCategories = Array.from(document.getElementById('categories').selectedOptions).map(option => option.value);
+            const itemsDiv = document.getElementById('items');
+            itemsDiv.innerHTML = '<label>Select items:</label>';
+
+            selectedCategories.forEach(category => {
+                const itemsList = categoryItems[category] || [];
+                itemsList.forEach(item => {
+                    const checkboxLabel = document.createElement('label');
+                    checkboxLabel.innerHTML = `<input type="checkbox" name="items" value="${item}" data-category="${category}"> ${item}`;
+                    itemsDiv.appendChild(checkboxLabel);
+                    itemsDiv.appendChild(document.createElement('br'));
+                });
+            });
+        }
+
+        function addItems() {
+            const selectedItems = Array.from(document.querySelectorAll('input[name="items"]:checked')).map(item => ({
+                category: item.getAttribute('data-category'),
+                item: item.value
+            }));
+            const addedItemsList = document.getElementById('added-items-list');
+
+            if (addedItemsList.children.length + selectedItems.length > 5) {
+                alert("You can only add up to 5 items.");
+                return;
+            }
+
+            selectedItems.forEach(({ category, item }) => {
+                if (![...addedItemsList.children].some(li => li.textContent.includes(`${category}: ${item}`))) {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${category}: ${item}`;
+                    addedItemsList.appendChild(listItem);
+                }
+            });
+            // Uncheck the selected checkboxes after adding
+            document.querySelectorAll('input[name="items"]:checked').forEach(checkbox => {
+            checkbox.checked = false;
+    }); 
+
+        }
+
+        function previewImage(event) {
+            const profilePic = document.querySelector('.profile-pic-upload');
+            profilePic.style.backgroundImage = `url(${URL.createObjectURL(event.target.files[0])})`;
+        }
+
+        function submitForm() {
+            const formData = {
+                name: document.getElementById('name').value,
+                department: document.getElementById('department').value,
+                year: document.getElementById('year').value,
+                phone: document.getElementById('phone').value,
+                team: document.getElementById('team').value,
+                items: Array.from(document.querySelectorAll('#added-items-list li')).map(item => item.textContent),
+                profilePic: document.querySelector('.profile-pic-upload').style.backgroundImage
+            };
+
+            localStorage.setItem('formData', JSON.stringify(formData));
+            window.location.href = 'output1.html';
+        }
+    </script>
+</body>
+</html>
