@@ -3,110 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Output</title>
+    <title>Submitted Details</title>
     <style>
+        /* Body styling */
         body {
             font-family: Arial, sans-serif;
-            background-color: white;
-            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 20px;
+            background-color: white;
         }
-        h2 {
-            text-align: center;
-            font-family: cursive, lucida handwriting;
-            color: #18691b;
-            font-size: 30px;
-        }
-        #output {
-            width: 75%; /* Aspect ratio 4:3 when height is set */
-            aspect-ratio: 4 / 3; /* Ensures a 4:3 ratio */
-            margin-top: 20px;
+
+        /* Container styling for ID card layout */
+        .id-card {
+            width: 300px; /* Fixed width */
+            max-height: 600px; /* Increased height */
             padding: 20px;
+            background-color: #000;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden; /* No scrollbar */
+        }
+
+        /* Profile picture styling */
+        .profile-pic {
+            width: 120px;
+            height: 120px;
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            background-color: black;
-            color: aliceblue;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: left
+            border-radius: 50%;
+            margin: 10px auto;
+            border: 4px solid #fff;
         }
-        #output h3 {
+
+        /* Container for text background */
+        .details-container {
+            padding: 20px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        /* Styling for list of details */
+        .details {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
             text-align: left;
-            color: aliceblue;
-            margin-top: 0;
+            font-size: 16px;
         }
-        .output-item {
-            font-size: 18px;
+
+        .details li {
+            margin-bottom: 15px; /* Increased space between list items */
+        }
+
+        .details strong {
+            color: #eee;
+        }
+
+        /* Styling for item list */
+        .items-list {
+            list-style-type: circle;
+            padding-left: 20px;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
 
-<h2><center>Registration Details</center></h2>
+    <div class="id-card" id="idCard">
+        <h2>Registered details</h2>
+        <div class="profile-pic" id="profilePic"></div>
+        <div class="details-container" id="detailsContainer">
+            <ul class="details" id="detailsList"></ul>
+        </div>
+    </div>
 
-<div id="output">
-    <h3>Entered Registration Details :</h3>
-    <div id="output-name" class="output-item"></div>
-    <div id="output-department" class="output-item"></div>
-    <div id="output-year" class="output-item"></div>
-    <div id="output-team" class="output-item"></div>
-    <div id="output-items" class="output-item"></div>
-</div>
+    <script>
+        // Retrieve form data from localStorage
+        const formData = JSON.parse(localStorage.getItem('formData'));
 
-<script>
-    // Retrieve data from sessionStorage
-    const data = JSON.parse(sessionStorage.getItem('registrationData'));
+        // Set background image for the details container based on selected team
+        const detailsContainer = document.getElementById('detailsContainer');
+        const teamBackgrounds = {
+            'ITHIHAS': 'url("red.png")',
+            'AAWAZ': 'url("green.png")',
+            'ELDHERS': 'url("yellow.png")',
+            'VOLVERS': 'url("blue.png")'
+        };
+        detailsContainer.style.backgroundImage = teamBackgrounds[formData.team] || 'url("default-bg.jpg")';
 
-    if (data) {
-        // Display entered details
-        document.getElementById('output-name').textContent = `Full Name: ${data.name}`;
-        document.getElementById('output-department').textContent = `Department: ${data.department}`;
-        document.getElementById('output-year').textContent = `Year: ${data.year}`;
-        document.getElementById('output-team').textContent = `Team: ${data.team}`;
-
-        // Display selected items
-        let itemsOutput = "Items: ";
-        if (data.selectedItems) {
-            itemsOutput += "<ul>";
-            for (const category in data.selectedItems) {
-                data.selectedItems[category].forEach(item => {
-                    itemsOutput += `<li>${category} - ${item}</li>`;
-                });
-            }
-            itemsOutput += "</ul>";
+        // Populate profile picture if the URL is valid
+        const profilePicDiv = document.getElementById('profilePic');
+        if (formData.profilePic) {
+            profilePicDiv.style.backgroundImage = `url("${formData.profilePic}")`;
         } else {
-            itemsOutput = "No items selected.";
+            profilePicDiv.style.backgroundImage = 'url("default-profile.png")'; // Add a default profile picture
         }
-        document.getElementById('output-items').innerHTML = itemsOutput;
 
-        // Change background based on team
-        const outputDiv = document.getElementById('output');
-        switch(data.team) {
-            case 'ITHIHAS':
-                outputDiv.style.backgroundImage = "url('green.jpg')";
-                break;
-            case 'AAWAZ':
-                outputDiv.style.backgroundImage = "url('green.png')";
-                break;
-            case 'ELDHERS':
-                outputDiv.style.backgroundImage = "url('image1.jpg')";
-                break;
-            case 'VOLVERS':
-                outputDiv.style.backgroundImage = "url('blue.png')";
-                break;
-            default:
-                outputDiv.style.backgroundImage = "url('gw.jpg')";
-                break;
-        }
-    } else {
-        document.getElementById('output').innerHTML = '<p>No registration data found.</p>';
-    }
-</script>
-
+        // Display form details in ID card format
+        const detailsList = document.getElementById('detailsList');
+        detailsList.innerHTML = `
+            <li><strong>Name:</strong> ${formData.name}</li>
+            <li><strong>Department:</strong> ${formData.department}</li>
+            <li><strong>Year:</strong> ${formData.year}</li>
+            <li><strong>Phone:</strong> ${formData.phone}</li>
+            <li><strong>Team:</strong> ${formData.team}</li>
+            <li><strong>Items:</strong><ul class="items-list">${formData.items.map(item => `<li>${item}</li>`).join('')}</ul></li>
+        `;
+    </script>
 </body>
 </html>
