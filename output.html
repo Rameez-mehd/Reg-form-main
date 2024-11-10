@@ -3,120 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submitted Details</title>
+    <title>Off Stage Participation Card</title>
     <style>
         /* Body styling */
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white; /* Light beige background */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background-color: white;
         }
 
-        /* Container styling for ID card layout */
-        .id-card {
-            width: 300px; /* Fixed width */
-            max-height: 600px; /* Increased height */
-            padding: 20px;
-            background-color: #000;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            color: white;
+        /* Card container */
+        .card-container {
+            width: 380px;
+            background-color: #f8f0e3;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            font-size: 14px;
+            color: #333;
             position: relative;
-            overflow: hidden; /* No scrollbar */
         }
 
-        /* Profile picture styling */
-        .profile-pic {
-            width: 120px;
-            height: 120px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 50%;
-            margin: 10px auto;
-            border: 4px solid #fff;
-        }
-
-        /* Container for text background */
-        .details-container {
+        /* Header with logos */
+        .header {
+            position: relative;
             padding: 20px;
-            border-radius: 8px;
+            background-color: #fff4e3;
+            text-align: center;
+        }
+
+        .azadi-logo {
+            width: 80px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .re-start-logo {
+            width: 120px;
+            margin-top: 20px;
+        }
+
+        .tagline {
+            font-size: 12px;
+            margin-top: 5px;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Banner */
+        .banner {
+            background-color: #00a651;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Content section */
+        .content {
+            display: flex;
+            padding: 20px;
+            justify-content: space-between;
+        }
+
+        /* Left side with text info */
+        .info-section {
+            width: 55%;
+        }
+
+        .info-section .info-row {
+            margin-bottom: 8px;
+        }
+
+        .info-section label {
+            font-weight: bold;
+        }
+
+        /* Right side with profile pic and ID */
+        .profile-section {
+            width: 40%;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Profile Picture */
+        .profile-pic {
+            width: 100%;
+            aspect-ratio: 3/4; /* Portrait format */
             background-size: cover;
             background-position: center;
-            color: white;
+            border-radius: 8px;
+            margin: 10px auto;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
         }
 
-        /* Styling for list of details */
-        .details {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0 0;
+        /* Unique ID on top of profile picture */
+        .unique-id {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Items Lists */
+        .items-section {
             text-align: left;
-            font-size: 16px;
+            margin-top: 15px;
         }
 
-        .details li {
-            margin-bottom: 15px; /* Increased space between list items */
+        .items-section h4 {
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 5px;
         }
 
-        .details strong {
-            color: #eee;
-        }
-
-        /* Styling for item list */
         .items-list {
-            list-style-type: circle;
-            padding-left: 20px;
-            margin-top: 5px;
+            list-style: none;
+            padding-left: 0;
+            font-size: 13px;
+            color: #333;
+        }
+
+        /* Footer section */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* College logo placeholder */
+        .college-logo {
+            width: 60px;
+            height: 60px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #666;
+        }
+
+        /* Signature */
+        .signature-section {
+            text-align: right;
+            font-family: 'Cursive';
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
+    <div class="card-container">
+        <!-- Header with logos and tagline -->
+        <div class="header">
+            <img src="azadi-logo.png" alt="Azadi Logo" class="azadi-logo">
+            <img src="re-start-logo.png" alt="Re-Start Festive Logo" class="re-start-logo">
+            <div class="tagline">"Recreating History, Revising Legacy"</div>
+        </div>
 
-    <div class="id-card" id="idCard">
-        <h2>Registered details</h2>
-        <div class="profile-pic" id="profilePic"></div>
-        <div class="details-container" id="detailsContainer">
-            <ul class="details" id="detailsList"></ul>
+        <!-- Banner Section -->
+        <div class="banner">OFF STAGE PARTICIPATION CARD</div>
+
+        <!-- Content Section -->
+        <div class="content">
+            <!-- Left Side with Information -->
+            <div class="info-section">
+                <div class="info-row">
+                    <label>Name:</label> <span id="name">*******</span>
+                </div>
+                <div class="info-row">
+                    <label>Class & Year:</label> <span id="year">BCE 2</span>
+                </div>
+                <div class="info-row">
+                    <label>Team Name:</label> <span id="team">F*** C**</span>
+                </div>
+
+                <!-- Individual and Group Items -->
+                <div class="items-section">
+                    <h4>Individual Items</h4>
+                    <ul id="individual-items" class="items-list">
+                        <li>1. [Item Name]</li>
+                        <li>2. [Item Name]</li>
+                        <li>3. [Item Name]</li>
+                    </ul>
+
+                    <h4>Group Items</h4>
+                    <ul id="group-items" class="items-list">
+                        <li>1. [Item Name]</li>
+                        <li>2. [Item Name]</li>
+                        <li>3. [Item Name]</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Side with Profile Picture and ID -->
+            <div class="profile-section">
+                <div class="unique-id" id="id">KLYA01012</div>
+                <div id="profilePic" class="profile-pic" style="background-image: url('profile-pic.jpg');"></div>
+            </div>
+        </div>
+
+        <!-- Footer Section with College Logo and Signature -->
+        <div class="footer">
+            <div class="college-logo">
+                College Logo
+            </div>
+            <div class="signature-section">
+                <div>__________________</div>
+                <div>Fine Arts Secretary</div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Retrieve form data from localStorage
+        // Retrieve data from localStorage and set it on the card
         const formData = JSON.parse(localStorage.getItem('formData'));
 
-        // Set background image for the details container based on selected team
-        const detailsContainer = document.getElementById('detailsContainer');
-        const teamBackgrounds = {
-            'ITHIHAS': 'url("red.png")',
-            'AAWAZ': 'url("green.png")',
-            'ELDHERS': 'url("yellow.png")',
-            'VOLVERS': 'url("blue.png")'
-        };
-        detailsContainer.style.backgroundImage = teamBackgrounds[formData.team] || 'url("default-bg.jpg")';
+        if (formData) {
+            // Set profile picture
+            const profilePicElement = document.getElementById('profilePic');
+            profilePicElement.style.backgroundImage = `url(${formData.profilePic})`;
 
-        // Populate profile picture if the URL is valid
-        const profilePicDiv = document.getElementById('profilePic');
-        if (formData.profilePic) {
-            profilePicDiv.style.backgroundImage = `url("${formData.profilePic}")`;
+            // Set other details
+            document.getElementById('name').textContent = formData.name || "*******";
+            document.getElementById('year').textContent = formData.year || "BCE 2";
+            document.getElementById('team').textContent = formData.team || "F*** C**";
+            document.getElementById('id').textContent = formData.id || "KLYA01012"; // Update ID as per formData
+
+            // Display individual and group selected items
+            const individualItemsList = document.getElementById('individual-items');
+            const groupItemsList = document.getElementById('group-items');
+
+            formData.individualItems.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                individualItemsList.appendChild(li);
+            });
+
+            formData.groupItems.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                groupItemsList.appendChild(li);
+            });
         } else {
-            profilePicDiv.style.backgroundImage = 'url("default-profile.png")'; // Add a default profile picture
+            document.body.innerHTML = "<h2>No registration data found.</h2>";
         }
-
-        // Display form details in ID card format
-        const detailsList = document.getElementById('detailsList');
-        detailsList.innerHTML = `
-            <li><strong>Name:</strong> ${formData.name}</li>
-            <li><strong>Department:</strong> ${formData.department}</li>
-            <li><strong>Year:</strong> ${formData.year}</li>
-            <li><strong>Phone:</strong> ${formData.phone}</li>
-            <li><strong>Team:</strong> ${formData.team}</li>
-            <li><strong>Items:</strong><ul class="items-list">${formData.items.map(item => `<li>${item}</li>`).join('')}</ul></li>
-        `;
     </script>
 </body>
 </html>
